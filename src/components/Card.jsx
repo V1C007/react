@@ -26,7 +26,7 @@ const Card = (props) => {
       addToCart({ title, price, size: selectedSize });
       openCart();
     } else {
-      alert('Please select a size before adding to cart.');
+      alert('POR FAVOR SELECCIONA UNA TALLA');
     }
   };
 

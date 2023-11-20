@@ -1,9 +1,9 @@
 import React from "react";
 import { RiShoppingCartLine, RiHeart2Line } from "react-icons/ri";
 import { BrowserRouter, Link, NavLink, Route, Routes } from "react-router-dom";
-import Cart from "./Cart";
 import SignUp from "./SignUp";
 import Login from "./Login";
+import Modal from "./Modal";
 
 const Header = () => {
   return (
@@ -34,15 +34,11 @@ const Header = () => {
 
         <ul className="flex items-center gap-6 text-xl">
           <li>
-            <NavLink to="/Cart" className="hover:text-[#E58D27] transition-colors">
+            <NavLink to="/Modal" className="hover:text-[#E58D27] transition-colors">
               <RiShoppingCartLine />
             </NavLink>
           </li>
-          <li>
-            <Link to="/" className="hover:text-[#E58D27] transition-colors">
-              <RiHeart2Line />
-            </Link>
-          </li>
+         
           <li>
             <Link to="/SignUp">
               <img src="https://img.freepik.com/vector-gratis/hombre-muestra-gesto-gran-idea_10045-637.jpg" className="w-8 h-8 object-cover rounded-full" alt="Avatar" />
@@ -52,7 +48,7 @@ const Header = () => {
       </header>
 
       <Routes>
-        <Route path="/Cart" element={<Cart />} />
+        <Route path="/Modal" element={<Modal />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/Login" element={<Login />} />
         
