@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import Card from "./components/Card";
 import Modal from "./components/Modal";
-import Cart from "./components/Cart";
+import { RiShoppingCart2Line } from "react-icons/ri";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -111,10 +111,10 @@ function App() {
               />
             </div>
             <button
-              className="p-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+              className="p-4 hover:text-[#E58D27] transition-colors"
               onClick={openModal}
             >
-              Abrir Carrito
+              <RiShoppingCart2Line/>
             </button>
             <Modal
               isOpen={isModalOpen}
@@ -122,7 +122,7 @@ function App() {
               cartItems={cartItems}
               removeFromCart={removeFromCart}
             />
-            <Cart cartItems={cartItems} removeFromCart={removeFromCart} />
+            <Modal cartItems={cartItems} removeFromCart={removeFromCart} />
           </div>
         </main>
       </div>
