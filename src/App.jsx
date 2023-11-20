@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import Card from "./components/Card";
+import Modal from "./components/Modal";
 import Cart from "./components/Cart";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Función para agregar un producto al carrito
   const addToCart = (product) => {
@@ -18,6 +20,10 @@ function App() {
     setCartItems(updatedCart);
   };
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
   return (
     <>
       <div className="min-h-screen">
@@ -25,13 +31,14 @@ function App() {
         <main className="h-[90vh] flex gap-8 p-8">
           <Sidebar />
           <div className="flex-1 h-full overflow-y-scroll">
-            {/* portada */}
-            <div className="rounded-2-xl">
-              <img src="https://i.imgur.com/R0R491Q.png" className="w-full h-[300px] object-cover object-bottom rounded-2xl" />
+            <div className="rounded-2xl">
+              <img
+                src="https://i.imgur.com/R0R491Q.png"
+                className="w-full h-[300px] object-cover object-bottom rounded-2xl"
+                alt="Portada"
+              />
             </div>
-
-            {/* Card */}
-            <div className="flex md:grid md:grid-cols-2 xl:flex items-center justify-around lg:justify-between flex-wrap gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
               <Card
                 img="https://static.nike.com/a/images/t_prod_ss/w_960,c_limit,f_auto/7dfb4ae7-edd1-4c87-8303-bd514f83ec07/fecha-de-lanzamiento-del-nike-sb-x-tightbooth%C2%AE%EF%B8%8E-dunk-low-pro-black-and-white-fd2629-100.jpg"
                 title="Nike SB x TIGHTBOOTH"
@@ -103,19 +110,18 @@ function App() {
                 }
               />
             </div>
-
-            {/* Puedes mostrar el contenido del carrito de compras aquí */}
-            <div>
-              <h2>Carrito de compras</h2>
-              <ul>
-                {cartItems.map((item, index) => (
-                  <li key={index}>
-                    {item.title} - ${item.price}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            {/* Utiliza el componente Cart para mostrar el contenido del carrito de compras */}
+            <button
+              className="p-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+              onClick={openModal}
+            >
+              Abrir Carrito
+            </button>
+            <Modal
+              isOpen={isModalOpen}
+              onClose={() => setIsModalOpen(false)}
+              cartItems={cartItems}
+              removeFromCart={removeFromCart}
+            />
             <Cart cartItems={cartItems} removeFromCart={removeFromCart} />
           </div>
         </main>
